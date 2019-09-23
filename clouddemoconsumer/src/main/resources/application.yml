@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: consumer-demo
+  cloud:
+    stream:
+      binders:
+        test:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                addresses: 10.0.20.132
+                port: 5672
+                username: root
+                password: root
+                virtual-host: /unicode-pay
+      bindings:
+        testInPut:
+          destination: testRabbit
+          content-type: application/json
+          default-binder: test
+
+server:
+  port: 8088
+
+
+eurekaServer:
+  host: localhost
+  port: 8761
+  user: root
+  password: root
+
+eureka:
+  client:
+    #将此项目注册到Eureka服务
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://${eurekaServer.user}:${eurekaServer.password}@${eurekaServer.host}:${eurekaServer.port}/eureka

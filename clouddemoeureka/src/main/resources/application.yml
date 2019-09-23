@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: eureka-server
+
+#开启权限认证
+  security:
+    basic:
+      enabled: true
+    user:
+      name: root
+      password: root
+
+server:
+  host: localhost
+  port: 8761

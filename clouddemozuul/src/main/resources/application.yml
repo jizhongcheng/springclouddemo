@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: zuul-demo
+
+server:
+  port: 8093
+eureka:
+  client:
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://root:root@localhost:8761/eureka
+#zuul:
+#  routes:
+#    consumer-demo: /user1/**
+
+zuul:
+  routes:
+#    consumer-demo: /user1/**
+    aaaa:
+      path: /user/**
+      serviceId: provider-demo
+      bbb:
+        path: /user1/**
+        serviceId: consumer-demo
+provider-demo:
+  ribbon:
+      listOfServers: http://localhost:8078,http://localhost:8079
+
+
+
+
